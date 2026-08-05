@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lucy in the South — free one-day guides to Andalucía</title>
 <meta name="description" content="Free one-day guides to Andalusian cities. No email, no signup — just the PDF.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#14110E">
 <meta property="og:title" content="Lucy in the South">
 <meta property="og:description" content="Free one-day guides to Andalucía. The Spain we're proud of, not the one on the postcard.">
 <meta property="og:type" content="website">
@@ -19,135 +21,115 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,800&family=IBM+Plex+Mono:wght@400;500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* ——————————————————————————————————————————————
+   Una casa andaluza en agosto: persianas echadas,
+   y lo único que entra es la luz, en lamas.
+   —————————————————————————————————————————————— */
 :root{
-  --cal:#FCFBF8;
-  --cal-hueco:#F1EDE4;
-  --tinta:#14161C;
-  --tinta-2:#5C6470;
-  --sombra:#26365E;      /* la sombra andaluza es azul, no gris */
-  --almagre:#C1502E;
-  --linea:#DCD5C7;
-
-  --bg:var(--cal);
-  --bg-2:var(--cal-hueco);
-  --fg:var(--tinta);
-  --fg-2:var(--tinta-2);
-  --rule:var(--linea);
-  --proy:var(--sombra);       /* color de lo proyectado */
-  --mezcla:multiply;          /* de día se proyecta sombra */
-  --proy-op:.085;
+  --carbon:#14110E;        /* penumbra cálida, no azul de medianoche */
+  --carbon-2:#1D1913;
+  --hueso:#F4EFE6;
+  --hueso-2:#A2988A;
+  --luz:#F7DFA8;           /* la luz de agosto que se cuela por la lama */
+  --almagre:#E4703F;
+  --linea:#332C24;
 }
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0E1218; --bg-2:#161C25; --fg:#F2EEE5; --fg-2:#98A2AE; --rule:#28313D;
-    --proy:#EBC98A;           /* de noche no se proyecta sombra: se proyecta luz */
-    --mezcla:screen;
-    --proy-op:.07;
-    --almagre:#E4703F;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0E1218; --bg-2:#161C25; --fg:#F2EEE5; --fg-2:#98A2AE; --rule:#28313D;
-  --proy:#EBC98A; --mezcla:screen; --proy-op:.07; --almagre:#E4703F;
-}
-:root[data-theme="light"]{
-  --bg:var(--cal); --bg-2:var(--cal-hueco); --fg:var(--tinta); --fg-2:var(--tinta-2);
-  --rule:var(--linea); --proy:var(--sombra); --mezcla:multiply; --proy-op:.085; --almagre:#C1502E;
-}
-
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--bg);color:var(--fg);
+  margin:0;background:var(--carbon);color:var(--hueso);
   font-family:"Karla",system-ui,sans-serif;font-size:17px;line-height:1.55;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img{display:block;max-width:100%}
 
-/* ————— la pared encalada y su sombra ————— */
-.tapia{position:relative;overflow:hidden;background:var(--bg)}
-/* sombra de persiana: lamas finas y muy separadas, no cebra.
-   el ángulo cambia con la hora — larga por la mañana, corta al mediodía. */
-.tapia::before{
-  content:"";position:absolute;inset:-40% -20%;
-  background:repeating-linear-gradient(var(--ang,90deg),
-    transparent 0 var(--hueco,78px),
-    var(--proy) var(--hueco,78px) calc(var(--hueco,78px) + var(--lama,13px)));
-  mix-blend-mode:var(--mezcla);
-  opacity:var(--proy-op);
-  pointer-events:none;
+/* ————— el haz que entra por la persiana —————
+   dos capas de periodo distinto para que no sea un patrón regular,
+   desenfocadas para tener penumbra, y con caída lateral: la luz
+   pierde fuerza según se aleja de la ventana. */
+.tapia{position:relative;overflow:hidden;isolation:isolate}
+.tapia::before,.tapia::after{
+  content:"";position:absolute;inset:-55% -30%;pointer-events:none;
+  mix-blend-mode:screen;z-index:3;
 }
-.manana{--ang:28deg;--hueco:74px;--lama:15px}
-.mediodia{--ang:84deg;--hueco:96px;--lama:9px}
-.tarde{--ang:152deg;--hueco:70px;--lama:16px}
+.tapia::before{
+  background:repeating-linear-gradient(var(--ang),
+    transparent 0 var(--h1), var(--luz) var(--h1) calc(var(--h1) + var(--l1)));
+  filter:blur(6px);
+  opacity:var(--op);
+  -webkit-mask-image:linear-gradient(var(--caida), #000 0%, rgba(0,0,0,.5) 48%, transparent 88%);
+          mask-image:linear-gradient(var(--caida), #000 0%, rgba(0,0,0,.5) 48%, transparent 88%);
+}
+.tapia::after{               /* segunda lama, más ancha y más difusa */
+  background:repeating-linear-gradient(calc(var(--ang) + 2deg),
+    transparent 0 var(--h2), var(--luz) var(--h2) calc(var(--h2) + var(--l2)));
+  filter:blur(15px);
+  opacity:calc(var(--op) * .6);
+  -webkit-mask-image:linear-gradient(var(--caida), #000 0%, transparent 76%);
+          mask-image:linear-gradient(var(--caida), #000 0%, transparent 76%);
+}
+/* la mañana entra muy tumbada; al mediodía casi de canto y estrecha;
+   por la tarde vuelve, tumbada al otro lado */
+.manana  {--ang:24deg; --h1:58px;--l1:22px; --h2:104px;--l2:30px; --op:.19; --caida:115deg}
+.mediodia{--ang:81deg; --h1:96px;--l1:11px; --h2:171px;--l2:16px; --op:.075;--caida:180deg}
+.tarde   {--ang:156deg;--h1:62px;--l1:20px; --h2:113px;--l2:27px; --op:.15; --caida:66deg}
+.noche   {--ang:14deg; --h1:70px;--l1:16px; --h2:126px;--l2:22px; --op:.10; --caida:135deg}
 
-.marco{position:relative;width:100%;max-width:1080px;margin:0 auto;padding:0 26px}
+.marco{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:0 26px}
 .hora{
   display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
   letter-spacing:.18em;color:var(--almagre);margin-bottom:20px;
 }
 
 /* ————— cabecera ————— */
-header{padding:76px 0 84px}
+header{padding:78px 0 88px}
 h1{
-  font-family:"Bodoni Moda",Didot,Georgia,serif;
-  font-optical-sizing:auto;font-weight:800;
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-optical-sizing:auto;font-weight:800;
   font-size:clamp(46px,11.5vw,104px);line-height:.92;letter-spacing:-.015em;
   margin:0 0 26px;text-wrap:balance;max-width:13ch;
 }
 h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
-.lede{margin:0;max-width:38ch;font-size:19px;color:var(--fg-2)}
+.lede{margin:0;max-width:38ch;font-size:19px;color:var(--hueso-2)}
 
-/* ————— rótulo de sección ————— */
 .rotulo{
   font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--hueso-2);
   display:flex;align-items:center;gap:16px;margin:0 0 26px;
 }
-.rotulo::after{content:"";flex:1;height:1px;background:var(--rule)}
+.rotulo::after{content:"";flex:1;height:1px;background:var(--linea)}
 
-/* ————— las guías: franjas con foto ————— */
-.guias{padding:8px 0 26px}
+/* ————— las guías ————— */
+.guias{padding:8px 0 30px}
 .ciudad{display:block;text-decoration:none;color:inherit;margin-bottom:14px}
 .lamina{
-  position:relative;border-radius:2px;overflow:hidden;
-  background:#0C0F14;
+  position:relative;border-radius:2px;overflow:hidden;background:#0B0906;
   transition:transform .3s cubic-bezier(.2,.7,.3,1);
 }
 .ciudad:hover .lamina,.ciudad:focus-visible .lamina{transform:translateY(-3px)}
 .ciudad:focus-visible .lamina{outline:3px solid var(--almagre);outline-offset:4px}
 .lamina img{
   width:100%;height:clamp(470px,124vw,540px);object-fit:cover;object-position:center 46%;
-  filter:saturate(1.05);
 }
 .velo{
   position:absolute;inset:0;
   background:
     linear-gradient(to top,
-      rgba(8,10,14,.93) 0%, rgba(8,10,14,.86) 22%, rgba(8,10,14,.55) 46%,
-      rgba(8,10,14,.16) 72%, transparent 92%),
-    linear-gradient(to right, rgba(8,10,14,.42) 0%, transparent 52%);
+      rgba(10,8,6,.94) 0%, rgba(10,8,6,.87) 22%, rgba(10,8,6,.56) 46%,
+      rgba(10,8,6,.17) 72%, transparent 92%),
+    linear-gradient(to right, rgba(10,8,6,.44) 0%, transparent 54%);
 }
-.texto{position:absolute;left:0;right:0;bottom:0;padding:26px 24px 22px;color:#FDFCF9}
+.texto{position:absolute;left:0;right:0;bottom:0;padding:26px 24px 22px;color:#FBF7EF}
 .nombre{
   font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:800;font-optical-sizing:auto;
   font-size:clamp(44px,13vw,84px);line-height:.86;letter-spacing:-.02em;margin:0 0 10px;
 }
-.gancho{margin:0 0 18px;font-size:16.5px;line-height:1.4;max-width:32ch;color:rgba(253,252,249,.9)}
-
-/* ficha técnica */
-.ficha{
-  display:flex;flex-wrap:wrap;gap:0;margin:0 0 18px;padding:0;
-  border-top:1px solid rgba(253,252,249,.26);
-}
-.ficha div{
-  padding:11px 20px 11px 0;margin-right:20px;
-  border-right:1px solid rgba(253,252,249,.18);
-}
+.gancho{margin:0 0 18px;font-size:16.5px;line-height:1.4;max-width:32ch;color:rgba(251,247,239,.9)}
+.ficha{display:flex;flex-wrap:wrap;margin:0 0 18px;padding:0;border-top:1px solid rgba(251,247,239,.26)}
+.ficha div{padding:11px 20px 11px 0;margin-right:20px;border-right:1px solid rgba(251,247,239,.18)}
 .ficha div:last-child{border-right:0;margin-right:0}
 .ficha dt{
   font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(253,252,249,.58);margin:0 0 3px;
+  text-transform:uppercase;color:rgba(251,247,239,.56);margin:0 0 3px;
 }
 .ficha dd{
   font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:500;margin:0;
@@ -157,53 +139,52 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
   display:inline-flex;align-items:center;gap:10px;
   font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:500;
   letter-spacing:.14em;text-transform:uppercase;
-  border-bottom:1.5px solid rgba(253,252,249,.5);padding-bottom:3px;
+  border-bottom:1.5px solid rgba(251,247,239,.5);padding-bottom:3px;
 }
-.ciudad:hover .bajar{border-bottom-color:#FDFCF9}
+.ciudad:hover .bajar{border-bottom-color:#FBF7EF}
 
-/* ————— las que faltan: solo sombra, aún no ha amanecido ————— */
-.pendientes{padding:46px 0 54px}
-.lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+/* ————— las que aún no tienen luz ————— */
+.pendientes{padding:48px 0 56px}
+.lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--linea)}
 .lista li{
   display:flex;align-items:baseline;justify-content:space-between;gap:18px;
-  padding:19px 2px;border-bottom:1px solid var(--rule);
+  padding:19px 2px;border-bottom:1px solid var(--linea);
 }
 .lista .sitio{
   font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:600;font-style:italic;
-  font-size:clamp(26px,6.5vw,38px);line-height:1;color:var(--fg);opacity:.42;
+  font-size:clamp(26px,6.5vw,38px);line-height:1;color:var(--hueso);opacity:.34;
 }
 .lista .cuando{
   font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--fg-2);white-space:nowrap;
+  text-transform:uppercase;color:var(--hueso-2);white-space:nowrap;
 }
 .gratis{
-  margin:30px 0 0;padding:20px 22px;background:var(--bg-2);border-radius:2px;
-  font-size:16px;color:var(--fg-2);max-width:56ch;
+  margin:30px 0 0;padding:20px 22px;background:var(--carbon-2);border-radius:2px;
+  font-size:16px;color:var(--hueso-2);max-width:56ch;
 }
-.gratis b{color:var(--fg)}
+.gratis b{color:var(--hueso)}
 
 /* ————— cierre ————— */
-.cierre{padding:56px 0 70px}
+.cierre{padding:58px 0 74px}
 .tarjeta{display:flex;flex-wrap:wrap;align-items:center;gap:30px}
 .retrato{
-  width:132px;height:132px;border-radius:50%;object-fit:cover;object-position:center 18%;
-  flex:none;border:1px solid var(--rule);
+  width:146px;height:146px;border-radius:50%;object-fit:cover;
+  flex:none;border:1px solid var(--linea);
 }
-.dicho{flex:1;min-width:260px}
+.dicho{flex:1;min-width:262px}
 .dicho p{
   font-family:"Bodoni Moda",Didot,Georgia,serif;font-size:clamp(23px,5vw,31px);
   line-height:1.22;margin:0 0 22px;max-width:22ch;font-weight:400;
 }
 .seguir{
-  display:inline-block;padding:15px 30px;background:var(--fg);color:var(--bg);
-  text-decoration:none;border-radius:999px;font-weight:700;font-size:15.5px;
-  letter-spacing:.02em;
+  display:inline-block;padding:15px 30px;background:var(--hueso);color:var(--carbon);
+  text-decoration:none;border-radius:999px;font-weight:700;font-size:15.5px;letter-spacing:.02em;
 }
 .seguir:focus-visible{outline:3px solid var(--almagre);outline-offset:3px}
 .firma{
-  margin:38px 0 0;padding-top:20px;border-top:1px solid var(--rule);
+  margin:38px 0 0;padding-top:20px;border-top:1px solid var(--linea);
   font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--fg-2);
+  text-transform:uppercase;color:var(--hueso-2);
 }
 
 @media (min-width:760px){
@@ -218,9 +199,9 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
 
 <header class="tapia manana">
   <div class="marco">
-    <span class="hora">09:14 · THE SHADE IS STILL LONG</span>
+    <span class="hora">09:14 · THE LIGHT COMES IN SIDEWAYS</span>
     <h1>A day in the south is <i>mostly</i> a matter of timing.</h1>
-    <p class="lede">Free one-day guides to Andalusian cities — where to be, and at what hour, so you get the version we'd give a friend.</p>
+    <p class="lede">Free one-day guides to Andalusian cities — where to be and at what time, so you get the version we'd give a friend.</p>
   </div>
 </header>
 
@@ -230,7 +211,7 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
 
     <a class="ciudad" href="cadiz-guide.pdf">
       <div class="lamina">
-        <img src="img/cadiz.jpg" alt="The sea wall at Campo del Sur in Cádiz, with the cathedral dome behind." width="900" height="1200" loading="lazy">
+        <img src="img/cadiz.jpg" alt="A street in Cádiz lined with turquoise and ochre façades." width="1200" height="827" loading="lazy">
         <div class="velo"></div>
         <div class="texto">
           <h2 class="nombre">Cádiz</h2>
@@ -247,7 +228,7 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
 
     <a class="ciudad" href="malaga-guide.pdf">
       <div class="lamina">
-        <img src="img/malaga.jpg" alt="A fountain in front of Málaga cathedral, with ochre and pink façades around it." width="900" height="1200" loading="lazy">
+        <img src="img/malaga.jpg" alt="Calle Larios in Málaga, marble paving and awnings overhead." width="1200" height="827" loading="lazy">
         <div class="velo"></div>
         <div class="texto">
           <h2 class="nombre">Málaga</h2>
@@ -267,7 +248,7 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
 
 <section class="tapia tarde pendientes">
   <div class="marco">
-    <span class="hora">17:40 · THE SHADE COMES BACK</span>
+    <span class="hora">17:40 · THE LIGHT COMES BACK</span>
     <p class="rotulo">Still being written</p>
     <ul class="lista">
       <li><span class="sitio">Sevilla</span><span class="cuando">Next</span></li>
@@ -278,11 +259,11 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
   </div>
 </section>
 
-<footer class="tapia manana cierre">
+<footer class="tapia noche cierre">
   <div class="marco">
-    <span class="hora">21:20 · NOW IT BEGINS</span>
+    <span class="hora">21:20 · THE STREET WAKES UP</span>
     <div class="tarjeta">
-      <img class="retrato" src="img/lucy.jpg" alt="Lucy" width="720" height="900" loading="lazy">
+      <img class="retrato" src="img/lucy.jpg" alt="Lucy" width="520" height="520" loading="lazy">
       <div class="dicho">
         <p>The Spain we're proud of — not the one on the postcard.</p>
         <a class="seguir" href="https://www.instagram.com/itslucyinthesouth/" target="_blank" rel="noopener">Follow for the next one →</a>
