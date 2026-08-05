@@ -17,247 +17,280 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌼</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,SOFT,WONK,wght@9..144,0..100,0..1,400..900&family=Karla:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,800&family=IBM+Plex+Mono:wght@400;500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --cal:#FBF9F4;
-  --cal-2:#F2EDE3;
-  --tinta:#17242E;
-  --tinta-suave:#54636E;
-  --cobalto:#1B4F8A;
-  --albero:#E0993A;
-  --linea:#DED6C7;
-
-  --cadiz:#0E7C9B;
-  --malaga:#D2571F;
-  --sevilla:#B23A2B;
-  --granada:#4C6B3C;
-  --pueblos:#5F718A;
+  --cal:#FCFBF8;
+  --cal-hueco:#F1EDE4;
+  --tinta:#14161C;
+  --tinta-2:#5C6470;
+  --sombra:#26365E;      /* la sombra andaluza es azul, no gris */
+  --almagre:#C1502E;
+  --linea:#DCD5C7;
 
   --bg:var(--cal);
-  --bg-2:var(--cal-2);
+  --bg-2:var(--cal-hueco);
   --fg:var(--tinta);
-  --fg-2:var(--tinta-suave);
+  --fg-2:var(--tinta-2);
   --rule:var(--linea);
-  --azulejo:var(--cobalto);
+  --proy:var(--sombra);       /* color de lo proyectado */
+  --mezcla:multiply;          /* de día se proyecta sombra */
+  --proy-op:.085;
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --bg:#111A21;
-    --bg-2:#18242C;
-    --fg:#F0EBE1;
-    --fg-2:#9DAAB4;
-    --rule:#2B3A45;
-    --azulejo:#3E7FC4;
-    --cadiz:#1795B8;
-    --malaga:#E4682C;
-    --sevilla:#CE4E3C;
-    --granada:#6A8E56;
-    --pueblos:#7B8EA8;
+    --bg:#0E1218; --bg-2:#161C25; --fg:#F2EEE5; --fg-2:#98A2AE; --rule:#28313D;
+    --proy:#EBC98A;           /* de noche no se proyecta sombra: se proyecta luz */
+    --mezcla:screen;
+    --proy-op:.07;
+    --almagre:#E4703F;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#111A21;
-  --bg-2:#18242C;
-  --fg:#F0EBE1;
-  --fg-2:#9DAAB4;
-  --rule:#2B3A45;
-  --azulejo:#3E7FC4;
-  --cadiz:#1795B8;
-  --malaga:#E4682C;
-  --sevilla:#CE4E3C;
-  --granada:#6A8E56;
-  --pueblos:#7B8EA8;
+  --bg:#0E1218; --bg-2:#161C25; --fg:#F2EEE5; --fg-2:#98A2AE; --rule:#28313D;
+  --proy:#EBC98A; --mezcla:screen; --proy-op:.07; --almagre:#E4703F;
 }
 :root[data-theme="light"]{
-  --bg:var(--cal);
-  --bg-2:var(--cal-2);
-  --fg:var(--tinta);
-  --fg-2:var(--tinta-suave);
-  --rule:var(--linea);
-  --azulejo:var(--cobalto);
-  --cadiz:#0E7C9B;
-  --malaga:#D2571F;
-  --sevilla:#B23A2B;
-  --granada:#4C6B3C;
-  --pueblos:#5F718A;
+  --bg:var(--cal); --bg-2:var(--cal-hueco); --fg:var(--tinta); --fg-2:var(--tinta-2);
+  --rule:var(--linea); --proy:var(--sombra); --mezcla:multiply; --proy-op:.085; --almagre:#C1502E;
 }
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--fg);
-  font-family:"Karla",system-ui,sans-serif;
-  font-size:17px;
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
+  margin:0;background:var(--bg);color:var(--fg);
+  font-family:"Karla",system-ui,sans-serif;font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-.wrap{width:100%;max-width:640px;margin:0 auto;padding:0 22px}
+img{display:block;max-width:100%}
 
-/* — cenefa de azulejo — */
-.cenefa{
-  height:18px;
-  background-image:
-    linear-gradient(45deg, var(--azulejo) 25%, transparent 25% 75%, var(--azulejo) 75%),
-    linear-gradient(45deg, var(--azulejo) 25%, transparent 25% 75%, var(--azulejo) 75%);
-  background-size:18px 18px;
-  background-position:0 0, 9px 9px;
-  background-color:var(--bg-2);
-}
-
-header{padding:44px 0 34px}
-.kicker{
-  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--fg-2);font-weight:700;margin:0 0 14px
-}
-h1{
-  font-family:"Fraunces",Georgia,serif;
-  font-variation-settings:'SOFT' 70,'WONK' 1,'opsz' 120;
-  font-weight:800;
-  font-size:clamp(40px,11vw,62px);
-  line-height:.95;
-  letter-spacing:-.02em;
-  margin:0 0 18px;
-  text-wrap:balance;
-}
-h1 em{font-style:normal;color:var(--azulejo)}
-.lede{margin:0;max-width:34ch;color:var(--fg-2);font-size:18px}
-
-h2{
-  font-family:"Fraunces",Georgia,serif;
-  font-variation-settings:'SOFT' 70,'WONK' 1,'opsz' 40;
-  font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--fg-2);
-  margin:0 0 16px;
-  padding-bottom:10px;
-  border-bottom:1px solid var(--rule);
-}
-section{padding:34px 0}
-
-/* — azulejos de guía — */
-.rejilla{display:grid;gap:12px}
-.azulejo{
-  display:block;
-  position:relative;
-  padding:24px 22px 20px;
-  background:var(--c);
-  color:#FBF9F4;
-  text-decoration:none;
-  border-radius:3px;
-  overflow:hidden;
-  transition:transform .18s ease, filter .18s ease;
-}
-.azulejo::after{
-  content:"";
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(45deg, rgba(255,255,255,.09) 25%, transparent 25% 75%, rgba(255,255,255,.09) 75%),
-    linear-gradient(45deg, rgba(255,255,255,.09) 25%, transparent 25% 75%, rgba(255,255,255,.09) 75%);
-  background-size:56px 56px;
-  background-position:0 0, 28px 28px;
+/* ————— la pared encalada y su sombra ————— */
+.tapia{position:relative;overflow:hidden;background:var(--bg)}
+/* sombra de persiana: lamas finas y muy separadas, no cebra.
+   el ángulo cambia con la hora — larga por la mañana, corta al mediodía. */
+.tapia::before{
+  content:"";position:absolute;inset:-40% -20%;
+  background:repeating-linear-gradient(var(--ang,90deg),
+    transparent 0 var(--hueco,78px),
+    var(--proy) var(--hueco,78px) calc(var(--hueco,78px) + var(--lama,13px)));
+  mix-blend-mode:var(--mezcla);
+  opacity:var(--proy-op);
   pointer-events:none;
 }
-.azulejo:hover,.azulejo:focus-visible{transform:translateY(-2px);filter:saturate(1.12)}
-.azulejo:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
-.ciudad{
-  font-family:"Fraunces",Georgia,serif;
-  font-variation-settings:'SOFT' 70,'WONK' 1,'opsz' 90;
-  font-weight:800;font-size:34px;line-height:1;margin:0 0 8px;letter-spacing:-.015em;
-}
-.gancho{margin:0 0 18px;font-size:16px;line-height:1.4;opacity:.92;max-width:30ch}
-.pie{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  border-top:1px solid rgba(255,255,255,.28);padding-top:12px;
-  font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700
-}
-.flecha{font-size:19px;line-height:1}
+.manana{--ang:28deg;--hueco:74px;--lama:15px}
+.mediodia{--ang:84deg;--hueco:96px;--lama:9px}
+.tarde{--ang:152deg;--hueco:70px;--lama:16px}
 
-/* — azulejos por poner — */
-.hueco{
-  padding:18px 20px;
-  border:1.5px dashed var(--c);
-  border-radius:3px;
-  color:var(--fg);
-  background:transparent;
-  display:flex;align-items:baseline;justify-content:space-between;gap:14px
+.marco{position:relative;width:100%;max-width:1080px;margin:0 auto;padding:0 26px}
+.hora{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
+  letter-spacing:.18em;color:var(--almagre);margin-bottom:20px;
 }
-.hueco .ciudad{font-size:23px;margin:0;color:var(--c)}
-.hueco span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2);font-weight:700;white-space:nowrap}
 
-.nota{
-  margin-top:16px;padding:16px 18px;background:var(--bg-2);border-radius:3px;
-  font-size:15px;color:var(--fg-2)
+/* ————— cabecera ————— */
+header{padding:76px 0 84px}
+h1{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;
+  font-optical-sizing:auto;font-weight:800;
+  font-size:clamp(46px,11.5vw,104px);line-height:.92;letter-spacing:-.015em;
+  margin:0 0 26px;text-wrap:balance;max-width:13ch;
 }
-.nota b{color:var(--fg)}
+h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
+.lede{margin:0;max-width:38ch;font-size:19px;color:var(--fg-2)}
 
-/* — cierre — */
-footer{padding:34px 0 54px;text-align:center}
+/* ————— rótulo de sección ————— */
+.rotulo{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);
+  display:flex;align-items:center;gap:16px;margin:0 0 26px;
+}
+.rotulo::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* ————— las guías: franjas con foto ————— */
+.guias{padding:8px 0 26px}
+.ciudad{display:block;text-decoration:none;color:inherit;margin-bottom:14px}
+.lamina{
+  position:relative;border-radius:2px;overflow:hidden;
+  background:#0C0F14;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.ciudad:hover .lamina,.ciudad:focus-visible .lamina{transform:translateY(-3px)}
+.ciudad:focus-visible .lamina{outline:3px solid var(--almagre);outline-offset:4px}
+.lamina img{
+  width:100%;height:clamp(470px,124vw,540px);object-fit:cover;object-position:center 46%;
+  filter:saturate(1.05);
+}
+.velo{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top,
+      rgba(8,10,14,.93) 0%, rgba(8,10,14,.86) 22%, rgba(8,10,14,.55) 46%,
+      rgba(8,10,14,.16) 72%, transparent 92%),
+    linear-gradient(to right, rgba(8,10,14,.42) 0%, transparent 52%);
+}
+.texto{position:absolute;left:0;right:0;bottom:0;padding:26px 24px 22px;color:#FDFCF9}
+.nombre{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:800;font-optical-sizing:auto;
+  font-size:clamp(44px,13vw,84px);line-height:.86;letter-spacing:-.02em;margin:0 0 10px;
+}
+.gancho{margin:0 0 18px;font-size:16.5px;line-height:1.4;max-width:32ch;color:rgba(253,252,249,.9)}
+
+/* ficha técnica */
+.ficha{
+  display:flex;flex-wrap:wrap;gap:0;margin:0 0 18px;padding:0;
+  border-top:1px solid rgba(253,252,249,.26);
+}
+.ficha div{
+  padding:11px 20px 11px 0;margin-right:20px;
+  border-right:1px solid rgba(253,252,249,.18);
+}
+.ficha div:last-child{border-right:0;margin-right:0}
+.ficha dt{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(253,252,249,.58);margin:0 0 3px;
+}
+.ficha dd{
+  font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:500;margin:0;
+  font-variant-numeric:tabular-nums;
+}
+.bajar{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  border-bottom:1.5px solid rgba(253,252,249,.5);padding-bottom:3px;
+}
+.ciudad:hover .bajar{border-bottom-color:#FDFCF9}
+
+/* ————— las que faltan: solo sombra, aún no ha amanecido ————— */
+.pendientes{padding:46px 0 54px}
+.lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.lista li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+  padding:19px 2px;border-bottom:1px solid var(--rule);
+}
+.lista .sitio{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:600;font-style:italic;
+  font-size:clamp(26px,6.5vw,38px);line-height:1;color:var(--fg);opacity:.42;
+}
+.lista .cuando{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--fg-2);white-space:nowrap;
+}
+.gratis{
+  margin:30px 0 0;padding:20px 22px;background:var(--bg-2);border-radius:2px;
+  font-size:16px;color:var(--fg-2);max-width:56ch;
+}
+.gratis b{color:var(--fg)}
+
+/* ————— cierre ————— */
+.cierre{padding:56px 0 70px}
+.tarjeta{display:flex;flex-wrap:wrap;align-items:center;gap:30px}
+.retrato{
+  width:132px;height:132px;border-radius:50%;object-fit:cover;object-position:center 18%;
+  flex:none;border:1px solid var(--rule);
+}
+.dicho{flex:1;min-width:260px}
+.dicho p{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-size:clamp(23px,5vw,31px);
+  line-height:1.22;margin:0 0 22px;max-width:22ch;font-weight:400;
+}
 .seguir{
-  display:inline-block;padding:15px 30px;
-  background:var(--fg);color:var(--bg);
-  text-decoration:none;border-radius:999px;
-  font-weight:700;font-size:16px;letter-spacing:.02em
+  display:inline-block;padding:15px 30px;background:var(--fg);color:var(--bg);
+  text-decoration:none;border-radius:999px;font-weight:700;font-size:15.5px;
+  letter-spacing:.02em;
 }
-.seguir:focus-visible{outline:3px solid var(--azulejo);outline-offset:3px}
+.seguir:focus-visible{outline:3px solid var(--almagre);outline-offset:3px}
 .firma{
-  margin:22px 0 0;font-size:13px;color:var(--fg-2)
+  margin:38px 0 0;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fg-2);
 }
-@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+@media (min-width:760px){
+  .lamina img{height:530px}
+  .texto{padding:34px 34px 30px}
+  .ficha div{padding-right:26px;margin-right:26px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
-<div class="cenefa"></div>
+<header class="tapia manana">
+  <div class="marco">
+    <span class="hora">09:14 · THE SHADE IS STILL LONG</span>
+    <h1>A day in the south is <i>mostly</i> a matter of timing.</h1>
+    <p class="lede">Free one-day guides to Andalusian cities — where to be, and at what hour, so you get the version we'd give a friend.</p>
+  </div>
+</header>
 
-<div class="wrap">
+<section class="tapia mediodia guias">
+  <div class="marco">
+    <p class="rotulo">Ready to download</p>
 
-  <header>
-    <p class="kicker">Andalucía · free guides</p>
-    <h1>One day is<br>never enough.<br><em>Here's how to<br>spend it anyway.</em></h1>
-    <p class="lede">Real one-day itineraries for southern Spain — the version locals would actually give you.</p>
-  </header>
+    <a class="ciudad" href="cadiz-guide.pdf">
+      <div class="lamina">
+        <img src="img/cadiz.jpg" alt="The sea wall at Campo del Sur in Cádiz, with the cathedral dome behind." width="900" height="1200" loading="lazy">
+        <div class="velo"></div>
+        <div class="texto">
+          <h2 class="nombre">Cádiz</h2>
+          <p class="gancho">Older than Rome, surrounded by Atlantic on three sides, and still nobody's first stop.</p>
+          <dl class="ficha">
+            <div><dt>Founded</dt><dd>c. 1100 BC</dd></div>
+            <div><dt>August high</dt><dd>30°C</dd></div>
+            <div><dt>On foot</dt><dd>All of it</dd></div>
+          </dl>
+          <span class="bajar">Get the PDF <span aria-hidden="true">↓</span></span>
+        </div>
+      </div>
+    </a>
 
-  <section>
-    <h2>Ready to download</h2>
-    <div class="rejilla">
+    <a class="ciudad" href="malaga-guide.pdf">
+      <div class="lamina">
+        <img src="img/malaga.jpg" alt="A fountain in front of Málaga cathedral, with ochre and pink façades around it." width="900" height="1200" loading="lazy">
+        <div class="velo"></div>
+        <div class="texto">
+          <h2 class="nombre">Málaga</h2>
+          <p class="gancho">Everyone lands here and drives straight past a Moorish fortress built on a Roman theatre.</p>
+          <dl class="ficha">
+            <div><dt>Founded</dt><dd>c. 770 BC</dd></div>
+            <div><dt>August high</dt><dd>32°C</dd></div>
+            <div><dt>Sunset</dt><dd>21:20</dd></div>
+          </dl>
+          <span class="bajar">Get the PDF <span aria-hidden="true">↓</span></span>
+        </div>
+      </div>
+    </a>
 
-      <a class="azulejo" style="--c:var(--cadiz)" href="cadiz-guide.pdf">
-        <p class="ciudad">Cádiz</p>
-        <p class="gancho">Three thousand years old, built on a rock in the Atlantic, and still not on your list.</p>
-        <div class="pie"><span>Free PDF · 6 pages</span><span class="flecha">↓</span></div>
-      </a>
+  </div>
+</section>
 
-      <a class="azulejo" style="--c:var(--malaga)" href="malaga-guide.pdf">
-        <p class="ciudad">Málaga</p>
-        <p class="gancho">Everyone lands here. Almost nobody stays. A Moorish fortress sits on a Roman theatre and most people drive straight past it.</p>
-        <div class="pie"><span>Free PDF · 6 pages</span><span class="flecha">↓</span></div>
-      </a>
+<section class="tapia tarde pendientes">
+  <div class="marco">
+    <span class="hora">17:40 · THE SHADE COMES BACK</span>
+    <p class="rotulo">Still being written</p>
+    <ul class="lista">
+      <li><span class="sitio">Sevilla</span><span class="cuando">Next</span></li>
+      <li><span class="sitio">Granada</span><span class="cuando">After that</span></li>
+      <li><span class="sitio">Pueblos Blancos</span><span class="cuando">After that</span></li>
+    </ul>
+    <p class="gratis"><b>No email. No signup.</b> The guides are free and they stay free — I'd rather you actually read one than hand over an address for it.</p>
+  </div>
+</section>
 
+<footer class="tapia manana cierre">
+  <div class="marco">
+    <span class="hora">21:20 · NOW IT BEGINS</span>
+    <div class="tarjeta">
+      <img class="retrato" src="img/lucy.jpg" alt="Lucy" width="720" height="900" loading="lazy">
+      <div class="dicho">
+        <p>The Spain we're proud of — not the one on the postcard.</p>
+        <a class="seguir" href="https://www.instagram.com/itslucyinthesouth/" target="_blank" rel="noopener">Follow for the next one →</a>
+      </div>
     </div>
-  </section>
-
-  <section>
-    <h2>Being written</h2>
-    <div class="rejilla">
-      <div class="hueco" style="--c:var(--sevilla)"><p class="ciudad">Sevilla</p><span>Next up</span></div>
-      <div class="hueco" style="--c:var(--granada)"><p class="ciudad">Granada</p><span>Soon</span></div>
-      <div class="hueco" style="--c:var(--pueblos)"><p class="ciudad">Pueblos Blancos</p><span>Soon</span></div>
-    </div>
-    <p class="nota"><b>No email. No signup.</b> The guides are free and always will be — I just want you to see the South properly.</p>
-  </section>
-
-</div>
-
-<div class="cenefa"></div>
-
-<div class="wrap">
-  <footer>
-    <a class="seguir" href="https://www.instagram.com/itslucyinthesouth/" target="_blank" rel="noopener">Follow for the next one →</a>
-    <p class="firma">@itslucyinthesouth · 🌼</p>
-  </footer>
-</div>
+    <p class="firma">@itslucyinthesouth · Andalucía</p>
+  </div>
+</footer>
 
 </body>
 </html>
