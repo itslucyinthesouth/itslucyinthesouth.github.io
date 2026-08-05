@@ -85,8 +85,8 @@ img{display:block;max-width:100%}
 header{padding:78px 0 88px}
 h1{
   font-family:"Bodoni Moda",Didot,Georgia,serif;font-optical-sizing:auto;font-weight:800;
-  font-size:clamp(46px,11.5vw,104px);line-height:.92;letter-spacing:-.015em;
-  margin:0 0 26px;text-wrap:balance;max-width:13ch;
+  font-size:clamp(44px,10.5vw,86px);line-height:1.02;letter-spacing:-.012em;
+  margin:0 0 26px;text-wrap:balance;max-width:14ch;
 }
 h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
 .lede{margin:0;max-width:38ch;font-size:19px;color:var(--hueso-2)}
@@ -187,10 +187,28 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
   text-transform:uppercase;color:var(--hueso-2);
 }
 
-@media (min-width:760px){
-  .lamina img{height:530px}
-  .texto{padding:34px 34px 30px}
+/* En pantalla ancha el texto sale de la foto: rejilla de dos columnas.
+   La foto se muestra pequeña — a 340px un fotograma de vídeo se ve nítido,
+   a 1030px se le ve la compresión. */
+@media (min-width:800px){
+  .ciudad{margin-bottom:44px}
+  .lamina{
+    display:grid;grid-template-columns:340px 1fr;gap:38px;align-items:center;
+    background:transparent;border-radius:0;
+  }
+  .ciudad:hover .lamina{transform:none}
+  .lamina img{height:425px;border-radius:2px;transition:transform .4s cubic-bezier(.2,.7,.3,1)}
+  .ciudad:hover .lamina img{transform:scale(1.03)}
+  .lamina{overflow:visible}
+  .lamina > img{overflow:hidden}
+  .velo{display:none}
+  .texto{position:static;padding:0}
+  .nombre{font-size:62px;margin-bottom:14px}
+  .gancho{font-size:17.5px;max-width:34ch;margin-bottom:24px}
   .ficha div{padding-right:26px;margin-right:26px}
+}
+@media (min-width:800px){
+  .foto{overflow:hidden;border-radius:2px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -211,7 +229,7 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
 
     <a class="ciudad" href="cadiz-guide.pdf">
       <div class="lamina">
-        <img src="img/cadiz.jpg" alt="Lucy on the seafront in Cádiz, the cathedral and the old town behind her." width="1080" height="745" loading="lazy">
+        <div class="foto"><img src="img/cadiz.jpg" alt="Lucy on the seafront in Cádiz, the cathedral and the old town behind her." width="1080" height="1350" loading="lazy"></div>
         <div class="velo"></div>
         <div class="texto">
           <h2 class="nombre">Cádiz</h2>
@@ -228,7 +246,7 @@ h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
 
     <a class="ciudad" href="malaga-guide.pdf">
       <div class="lamina">
-        <img src="img/malaga.jpg" alt="Calle Larios in Málaga, marble paving and awnings overhead." width="1080" height="745" loading="lazy">
+        <div class="foto"><img src="img/malaga.jpg" alt="Calle Larios in Málaga, marble paving and awnings overhead." width="1080" height="1350" loading="lazy"></div>
         <div class="velo"></div>
         <div class="texto">
           <h2 class="nombre">Málaga</h2>
