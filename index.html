@@ -1,1 +1,258 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Lucy in the South</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucy in the South — free one-day guides to Andalucía</title>
+<meta name="description" content="Free one-day guides to Andalusian cities. No email, no signup — just the PDF.">
+<meta property="og:title" content="Lucy in the South">
+<meta property="og:description" content="Free one-day guides to Andalucía. The Spain we're proud of, not the one on the postcard.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://itslucyinthesouth.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌼</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,SOFT,WONK,wght@9..144,0..100,0..1,400..900&family=Karla:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cal:#FBF9F4;
+  --cal-2:#F2EDE3;
+  --tinta:#17242E;
+  --tinta-suave:#54636E;
+  --cobalto:#1B4F8A;
+  --albero:#E0993A;
+  --linea:#DED6C7;
+
+  --cadiz:#0E7C9B;
+  --malaga:#D2571F;
+  --sevilla:#B23A2B;
+  --granada:#4C6B3C;
+  --pueblos:#5F718A;
+
+  --bg:var(--cal);
+  --bg-2:var(--cal-2);
+  --fg:var(--tinta);
+  --fg-2:var(--tinta-suave);
+  --rule:var(--linea);
+  --azulejo:var(--cobalto);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#111A21;
+    --bg-2:#18242C;
+    --fg:#F0EBE1;
+    --fg-2:#9DAAB4;
+    --rule:#2B3A45;
+    --azulejo:#3E7FC4;
+    --cadiz:#1795B8;
+    --malaga:#E4682C;
+    --sevilla:#CE4E3C;
+    --granada:#6A8E56;
+    --pueblos:#7B8EA8;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111A21;
+  --bg-2:#18242C;
+  --fg:#F0EBE1;
+  --fg-2:#9DAAB4;
+  --rule:#2B3A45;
+  --azulejo:#3E7FC4;
+  --cadiz:#1795B8;
+  --malaga:#E4682C;
+  --sevilla:#CE4E3C;
+  --granada:#6A8E56;
+  --pueblos:#7B8EA8;
+}
+:root[data-theme="light"]{
+  --bg:var(--cal);
+  --bg-2:var(--cal-2);
+  --fg:var(--tinta);
+  --fg-2:var(--tinta-suave);
+  --rule:var(--linea);
+  --azulejo:var(--cobalto);
+  --cadiz:#0E7C9B;
+  --malaga:#D2571F;
+  --sevilla:#B23A2B;
+  --granada:#4C6B3C;
+  --pueblos:#5F718A;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"Karla",system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{width:100%;max-width:640px;margin:0 auto;padding:0 22px}
+
+/* — cenefa de azulejo — */
+.cenefa{
+  height:18px;
+  background-image:
+    linear-gradient(45deg, var(--azulejo) 25%, transparent 25% 75%, var(--azulejo) 75%),
+    linear-gradient(45deg, var(--azulejo) 25%, transparent 25% 75%, var(--azulejo) 75%);
+  background-size:18px 18px;
+  background-position:0 0, 9px 9px;
+  background-color:var(--bg-2);
+}
+
+header{padding:44px 0 34px}
+.kicker{
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg-2);font-weight:700;margin:0 0 14px
+}
+h1{
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:'SOFT' 70,'WONK' 1,'opsz' 120;
+  font-weight:800;
+  font-size:clamp(40px,11vw,62px);
+  line-height:.95;
+  letter-spacing:-.02em;
+  margin:0 0 18px;
+  text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--azulejo)}
+.lede{margin:0;max-width:34ch;color:var(--fg-2);font-size:18px}
+
+h2{
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:'SOFT' 70,'WONK' 1,'opsz' 40;
+  font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fg-2);
+  margin:0 0 16px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--rule);
+}
+section{padding:34px 0}
+
+/* — azulejos de guía — */
+.rejilla{display:grid;gap:12px}
+.azulejo{
+  display:block;
+  position:relative;
+  padding:24px 22px 20px;
+  background:var(--c);
+  color:#FBF9F4;
+  text-decoration:none;
+  border-radius:3px;
+  overflow:hidden;
+  transition:transform .18s ease, filter .18s ease;
+}
+.azulejo::after{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,.09) 25%, transparent 25% 75%, rgba(255,255,255,.09) 75%),
+    linear-gradient(45deg, rgba(255,255,255,.09) 25%, transparent 25% 75%, rgba(255,255,255,.09) 75%);
+  background-size:56px 56px;
+  background-position:0 0, 28px 28px;
+  pointer-events:none;
+}
+.azulejo:hover,.azulejo:focus-visible{transform:translateY(-2px);filter:saturate(1.12)}
+.azulejo:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.ciudad{
+  font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:'SOFT' 70,'WONK' 1,'opsz' 90;
+  font-weight:800;font-size:34px;line-height:1;margin:0 0 8px;letter-spacing:-.015em;
+}
+.gancho{margin:0 0 18px;font-size:16px;line-height:1.4;opacity:.92;max-width:30ch}
+.pie{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border-top:1px solid rgba(255,255,255,.28);padding-top:12px;
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700
+}
+.flecha{font-size:19px;line-height:1}
+
+/* — azulejos por poner — */
+.hueco{
+  padding:18px 20px;
+  border:1.5px dashed var(--c);
+  border-radius:3px;
+  color:var(--fg);
+  background:transparent;
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px
+}
+.hueco .ciudad{font-size:23px;margin:0;color:var(--c)}
+.hueco span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-2);font-weight:700;white-space:nowrap}
+
+.nota{
+  margin-top:16px;padding:16px 18px;background:var(--bg-2);border-radius:3px;
+  font-size:15px;color:var(--fg-2)
+}
+.nota b{color:var(--fg)}
+
+/* — cierre — */
+footer{padding:34px 0 54px;text-align:center}
+.seguir{
+  display:inline-block;padding:15px 30px;
+  background:var(--fg);color:var(--bg);
+  text-decoration:none;border-radius:999px;
+  font-weight:700;font-size:16px;letter-spacing:.02em
+}
+.seguir:focus-visible{outline:3px solid var(--azulejo);outline-offset:3px}
+.firma{
+  margin:22px 0 0;font-size:13px;color:var(--fg-2)
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="cenefa"></div>
+
+<div class="wrap">
+
+  <header>
+    <p class="kicker">Andalucía · free guides</p>
+    <h1>One day is<br>never enough.<br><em>Here's how to<br>spend it anyway.</em></h1>
+    <p class="lede">Real one-day itineraries for southern Spain — the version locals would actually give you.</p>
+  </header>
+
+  <section>
+    <h2>Ready to download</h2>
+    <div class="rejilla">
+
+      <a class="azulejo" style="--c:var(--cadiz)" href="cadiz-guide.pdf">
+        <p class="ciudad">Cádiz</p>
+        <p class="gancho">Three thousand years old, built on a rock in the Atlantic, and still not on your list.</p>
+        <div class="pie"><span>Free PDF · 6 pages</span><span class="flecha">↓</span></div>
+      </a>
+
+      <a class="azulejo" style="--c:var(--malaga)" href="malaga-guide.pdf">
+        <p class="ciudad">Málaga</p>
+        <p class="gancho">Everyone lands here. Almost nobody stays. A Moorish fortress sits on a Roman theatre and most people drive straight past it.</p>
+        <div class="pie"><span>Free PDF · 6 pages</span><span class="flecha">↓</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Being written</h2>
+    <div class="rejilla">
+      <div class="hueco" style="--c:var(--sevilla)"><p class="ciudad">Sevilla</p><span>Next up</span></div>
+      <div class="hueco" style="--c:var(--granada)"><p class="ciudad">Granada</p><span>Soon</span></div>
+      <div class="hueco" style="--c:var(--pueblos)"><p class="ciudad">Pueblos Blancos</p><span>Soon</span></div>
+    </div>
+    <p class="nota"><b>No email. No signup.</b> The guides are free and always will be — I just want you to see the South properly.</p>
+  </section>
+
+</div>
+
+<div class="cenefa"></div>
+
+<div class="wrap">
+  <footer>
+    <a class="seguir" href="https://www.instagram.com/itslucyinthesouth/" target="_blank" rel="noopener">Follow for the next one →</a>
+    <p class="firma">@itslucyinthesouth · 🌼</p>
+  </footer>
+</div>
+
+</body>
+</html>
