@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lucy in the South — free one-day guides to Andalucía</title>
 <meta name="description" content="Free one-day guides to Andalusian cities. No email, no signup — just the PDF.">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#14110E">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FDFCF8">
 <meta property="og:title" content="Lucy in the South">
 <meta property="og:description" content="Free one-day guides to Andalucía. The Spain we're proud of, not the one on the postcard.">
 <meta property="og:type" content="website">
@@ -14,274 +14,255 @@
 <meta property="og:image" content="https://itslucyinthesouth.github.io/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Lucy in an Andalusian courtyard — free one-day guides to southern Spain.">
+<meta property="og:image:alt" content="Lucy on the Andalusian coast — free one-day guides to southern Spain.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌼</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600;6..96,800&family=IBM+Plex+Mono:wght@400;500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ——————————————————————————————————————————————
-   Una casa andaluza en agosto: persianas echadas,
-   y lo único que entra es la luz, en lamas.
-   —————————————————————————————————————————————— */
+/* ————————————————————————————————————————————————————
+   Misma familia que los carruseles: papel, verde bandera,
+   margarita y Fraunces. Lo que aporta la web y ellos no:
+   la retícula, las fichas en monoespaciada y el mapa.
+   ———————————————————————————————————————————————————— */
 :root{
-  --carbon:#14110E;        /* penumbra cálida, no azul de medianoche */
-  --carbon-2:#1D1913;
-  --hueso:#F4EFE6;
-  --hueso-2:#A2988A;
-  --luz:#F7DFA8;           /* la luz de agosto que se cuela por la lama */
-  --almagre:#E4703F;
-  --linea:#332C24;
-  --verde:#2FC77A;      /* el verde de los carruseles, subido para que viva sobre el carbón */
+  --papel:#FDFCF8;
+  --papel-2:#F2F0E6;
+  --tinta:#12211A;
+  --tinta-2:#5B6B62;
+  --verde:#0E5C36;
+  --vivo:#00A857;
+  --amarillo:#FFC93C;
+  --linea:#D6DDD4;
+  --linea-2:#E8E6DC;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--carbon);color:var(--hueso);
-  font-family:"Karla",system-ui,sans-serif;font-size:17px;line-height:1.55;
+  margin:0;background:var(--papel);color:var(--tinta);
+  font-family:"Space Grotesk",system-ui,sans-serif;font-size:17px;line-height:1.6;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+/* grano de papel — sustituye a las rayas: textura, no motivo */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 img{display:block;max-width:100%}
 
-/* ————— el haz que entra por la persiana —————
-   dos capas de periodo distinto para que no sea un patrón regular,
-   desenfocadas para tener penumbra, y con caída lateral: la luz
-   pierde fuerza según se aleja de la ventana. */
-.tapia{position:relative;overflow:hidden;isolation:isolate}
-.tapia::before,.tapia::after{
-  content:"";position:absolute;inset:-55% -30%;pointer-events:none;
-  mix-blend-mode:screen;z-index:3;
-}
-.tapia::before{
-  background:repeating-linear-gradient(var(--ang),
-    transparent 0 var(--h1), var(--luz) var(--h1) calc(var(--h1) + var(--l1)));
-  filter:blur(6px);
-  opacity:var(--op);
-  -webkit-mask-image:linear-gradient(var(--caida), #000 0%, rgba(0,0,0,.5) 48%, transparent 88%);
-          mask-image:linear-gradient(var(--caida), #000 0%, rgba(0,0,0,.5) 48%, transparent 88%);
-}
-.tapia::after{               /* segunda lama, más ancha y más difusa */
-  background:repeating-linear-gradient(calc(var(--ang) + 2deg),
-    transparent 0 var(--h2), var(--luz) var(--h2) calc(var(--h2) + var(--l2)));
-  filter:blur(15px);
-  opacity:calc(var(--op) * .6);
-  -webkit-mask-image:linear-gradient(var(--caida), #000 0%, transparent 76%);
-          mask-image:linear-gradient(var(--caida), #000 0%, transparent 76%);
-}
-/* la mañana entra muy tumbada; al mediodía casi de canto y estrecha;
-   por la tarde vuelve, tumbada al otro lado */
-.manana  {--ang:24deg; --h1:58px;--l1:22px; --h2:104px;--l2:30px; --op:.19; --caida:115deg}
-.mediodia{--ang:81deg; --h1:96px;--l1:11px; --h2:171px;--l2:16px; --op:.075;--caida:180deg}
-.tarde   {--ang:156deg;--h1:62px;--l1:20px; --h2:113px;--l2:27px; --op:.15; --caida:66deg}
-.noche   {--ang:14deg; --h1:70px;--l1:16px; --h2:126px;--l2:22px; --op:.10; --caida:135deg}
+.marco{position:relative;width:100%;max-width:1080px;margin:0 auto;padding:0 26px}
+section,header,footer{position:relative}
 
-.marco{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:0 26px}
+/* la hora: el hilo editorial que recorre la página */
 .hora{
-  display:block;font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
-  letter-spacing:.18em;color:var(--almagre);margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
+  letter-spacing:.17em;color:var(--verde);margin-bottom:22px;
 }
+.hora::after{content:"";flex:1;height:1px;background:var(--linea)}
 
 /* ————— cabecera ————— */
-header{padding:78px 0 88px}
+header{padding:64px 0 74px}
+.margarita{position:absolute;top:-58px;right:-52px;width:230px;height:230px;opacity:.9;pointer-events:none}
 h1{
-  font-family:"Bodoni Moda",Didot,Georgia,serif;font-optical-sizing:auto;font-weight:800;
-  font-size:clamp(44px,10.5vw,86px);line-height:1.02;letter-spacing:-.012em;
-  margin:0 0 26px;text-wrap:balance;max-width:14ch;
+  font-family:"Fraunces",Georgia,serif;font-optical-sizing:auto;font-weight:900;
+  font-size:clamp(44px,10.5vw,88px);line-height:1.0;letter-spacing:-.028em;
+  margin:0 0 24px;text-wrap:balance;max-width:14ch;
 }
-h1 i{font-style:italic;font-weight:600;color:var(--almagre)}
-.lede{margin:0;max-width:38ch;font-size:19px;color:var(--hueso-2)}
+h1 em{font-style:italic;font-weight:600;color:var(--vivo)}
+.lede{margin:0;max-width:40ch;font-size:19px;color:var(--tinta-2)}
+.lede i{font-style:italic;color:var(--tinta)}
 
 .rotulo{
   font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--hueso-2);
-  display:flex;align-items:center;gap:16px;margin:0 0 26px;
+  letter-spacing:.19em;text-transform:uppercase;color:var(--tinta-2);
+  display:flex;align-items:center;gap:16px;margin:0 0 24px;
 }
 .rotulo::after{content:"";flex:1;height:1px;background:var(--linea)}
 
 /* ————— las guías ————— */
-.guias{padding:8px 0 30px}
-.ciudad{display:block;text-decoration:none;color:inherit;margin-bottom:14px}
-.lamina{
-  position:relative;border-radius:2px;overflow:hidden;background:#0B0906;
-  transition:transform .3s cubic-bezier(.2,.7,.3,1);
+.guias{padding:12px 0 34px}
+.ciudad{
+  display:block;text-decoration:none;color:inherit;margin-bottom:16px;
+  border:1.5px solid var(--linea);border-radius:20px;padding:16px;
+  background:var(--papel);transition:border-color .25s, transform .25s;
 }
-.ciudad:hover .lamina,.ciudad:focus-visible .lamina{transform:translateY(-3px)}
-.ciudad:focus-visible .lamina{outline:3px solid var(--almagre);outline-offset:4px}
-.lamina img{
-  width:100%;height:clamp(470px,124vw,540px);object-fit:cover;object-position:center 46%;
-}
-.velo{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(to top,
-      rgba(10,8,6,.94) 0%, rgba(10,8,6,.87) 22%, rgba(10,8,6,.56) 46%,
-      rgba(10,8,6,.17) 72%, transparent 92%),
-    linear-gradient(to right, rgba(10,8,6,.44) 0%, transparent 54%);
-}
-.texto{position:absolute;left:0;right:0;bottom:0;padding:26px 24px 22px;color:#FBF7EF}
+.ciudad:hover{border-color:var(--vivo);transform:translateY(-2px)}
+.ciudad:focus-visible{outline:3px solid var(--vivo);outline-offset:3px}
+.foto{overflow:hidden;border-radius:12px;background:var(--papel-2)}
+.foto img{width:100%;height:clamp(300px,74vw,380px);object-fit:cover;object-position:center 40%}
+.texto{padding:20px 6px 4px}
 .nombre{
-  font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:800;font-optical-sizing:auto;
-  font-size:clamp(44px,13vw,84px);line-height:.86;letter-spacing:-.02em;margin:0 0 10px;
+  font-family:"Fraunces",Georgia,serif;font-weight:900;font-optical-sizing:auto;
+  font-size:clamp(40px,10vw,58px);line-height:.95;letter-spacing:-.03em;margin:0 0 10px;
 }
-.gancho{margin:0 0 18px;font-size:16.5px;line-height:1.4;max-width:32ch;color:rgba(251,247,239,.9)}
-.ficha{display:flex;flex-wrap:wrap;margin:0 0 18px;padding:0;border-top:1px solid rgba(251,247,239,.26)}
-.ficha div{padding:11px 20px 11px 0;margin-right:20px;border-right:1px solid rgba(251,247,239,.18)}
+.gancho{margin:0 0 20px;font-size:16.5px;line-height:1.5;max-width:38ch;color:var(--tinta-2)}
+.ficha{display:flex;flex-wrap:wrap;margin:0 0 20px;padding:0;border-top:1px solid var(--linea)}
+.ficha div{padding:12px 20px 12px 0;margin-right:20px;border-right:1px solid var(--linea)}
 .ficha div:last-child{border-right:0;margin-right:0}
 .ficha dt{
   font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(251,247,239,.56);margin:0 0 3px;
+  text-transform:uppercase;color:var(--tinta-2);margin:0 0 3px;
 }
 .ficha dd{
   font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:500;margin:0;
-  font-variant-numeric:tabular-nums;
+  font-variant-numeric:tabular-nums;color:var(--tinta);
 }
 .bajar{
   display:inline-flex;align-items:center;gap:10px;
+  background:var(--verde);color:var(--papel);border-radius:999px;
   font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;
-  border-bottom:1.5px solid rgba(251,247,239,.5);padding-bottom:3px;
+  letter-spacing:.13em;text-transform:uppercase;padding:13px 24px;
+  transition:background .25s;
 }
-.ciudad:hover .bajar{border-bottom-color:#FBF7EF}
+.ciudad:hover .bajar{background:var(--vivo)}
 
-/* ————— el mapa: las provincias con guía se encienden ————— */
-.mapa{padding:48px 0 58px}
-.lienzo{margin:6px -10px 30px;overflow:hidden}
+/* ————— el mapa ————— */
+.mapa{padding:34px 0 46px}
+.lienzo{margin:2px -14px 26px}
 .andalucia{width:100%;height:auto;display:block;overflow:visible}
-.prov{
-  fill:none;stroke:var(--hueso);stroke-width:1.5;stroke-linejoin:round;
-  opacity:.20;vector-effect:non-scaling-stroke;
-}
-.prov.viva{
-  fill:rgba(0,168,87,.13);stroke:var(--verde);stroke-width:2.1;opacity:1;
-}
-.icono{
-  fill:none;stroke:var(--hueso);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
-  opacity:.42;vector-effect:non-scaling-stroke;
-}
-.pin.viva .icono{stroke:var(--verde);opacity:1;stroke-width:2}
+.prov{fill:none;stroke:var(--tinta);stroke-width:1.4;stroke-linejoin:round;opacity:.26;vector-effect:non-scaling-stroke}
+.prov.viva{fill:rgba(0,168,87,.10);stroke:var(--verde);stroke-width:2;opacity:1}
+.icono path{fill:none;stroke:var(--tinta);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.34;vector-effect:non-scaling-stroke}
+.pin.viva .icono path{stroke:var(--verde);opacity:1;stroke-width:1.7}
 .sitio{
-  font-family:"IBM Plex Mono",monospace;font-size:15px;letter-spacing:.16em;
-  fill:var(--hueso);opacity:.42;text-anchor:middle;
-  stroke:var(--carbon);stroke-width:5;paint-order:stroke fill;   /* despeja la línea de detrás */
+  font-family:"IBM Plex Mono",monospace;font-size:15px;letter-spacing:.15em;
+  fill:var(--tinta);opacity:.4;text-anchor:middle;
+  stroke:var(--papel);stroke-width:5;paint-order:stroke fill;
 }
-.pin.viva .sitio{fill:var(--hueso);opacity:.92}
+.pin.viva .sitio{opacity:1}
 .pdf{
-  font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.14em;
-  fill:var(--verde);text-anchor:middle;
-  stroke:var(--carbon);stroke-width:5;paint-order:stroke fill;
+  font-family:"IBM Plex Mono",monospace;font-size:13px;letter-spacing:.13em;
+  fill:var(--vivo);text-anchor:middle;stroke:var(--papel);stroke-width:5;paint-order:stroke fill;
 }
 a.pin{cursor:pointer}
-a.pin:hover .icono{stroke:var(--luz)}
-a.pin:hover .pdf,a.pin:hover .sitio{fill:var(--luz);opacity:1}
-a.pin:focus-visible{outline:2px solid var(--almagre);outline-offset:4px}
+a.pin:hover .icono path{stroke:var(--vivo)}
+a.pin:hover .sitio{fill:var(--vivo)}
+a.pin:focus-visible{outline:2px solid var(--vivo);outline-offset:4px}
+
+.gratis{
+  margin:22px 0 0;padding:22px 24px;background:var(--papel-2);border-radius:16px;
+  font-size:16px;color:var(--tinta-2);max-width:58ch;
+}
+.gratis b{color:var(--tinta)}
 
 /* ————— cierre ————— */
-.cierre{padding:58px 0 74px}
+.cierre{padding:44px 0 66px;border-top:1px solid var(--linea-2)}
 .tarjeta{display:flex;flex-wrap:wrap;align-items:center;gap:30px}
 .retrato{
-  width:146px;height:146px;border-radius:50%;object-fit:cover;
-  flex:none;border:1px solid var(--linea);
+  width:140px;height:140px;border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid var(--verde);padding:4px;background:var(--papel);
 }
-.dicho{flex:1;min-width:262px}
+.dicho{flex:1;min-width:264px}
 .dicho p{
-  font-family:"Bodoni Moda",Didot,Georgia,serif;font-size:clamp(23px,5vw,31px);
-  line-height:1.22;margin:0 0 22px;max-width:22ch;font-weight:400;
+  font-family:"Fraunces",Georgia,serif;font-size:clamp(24px,5vw,33px);font-weight:400;
+  line-height:1.22;margin:0 0 22px;max-width:22ch;
 }
+.dicho em{font-style:italic;color:var(--vivo)}
 .seguir{
-  display:inline-block;padding:15px 30px;background:var(--hueso);color:var(--carbon);
-  text-decoration:none;border-radius:999px;font-weight:700;font-size:15.5px;letter-spacing:.02em;
+  display:inline-block;padding:15px 30px;background:var(--verde);color:var(--papel);
+  text-decoration:none;border-radius:999px;font-weight:700;font-size:15.5px;
+  transition:background .25s;
 }
-.seguir:focus-visible{outline:3px solid var(--almagre);outline-offset:3px}
+.seguir:hover{background:var(--vivo)}
+.seguir:focus-visible{outline:3px solid var(--vivo);outline-offset:3px}
 .firma{
-  margin:38px 0 0;padding-top:20px;border-top:1px solid var(--linea);
-  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--hueso-2);
+  margin:36px 0 0;padding-top:18px;border-top:1px solid var(--linea-2);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--tinta-2);
+}
+.firma .caveat{
+  font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:19px;
+  letter-spacing:0;text-transform:none;color:var(--verde);
 }
 
-/* En pantalla ancha el texto sale de la foto: rejilla de dos columnas.
-   La foto se muestra pequeña — a 340px un fotograma de vídeo se ve nítido,
-   a 1030px se le ve la compresión. */
-@media (min-width:800px){
-  .ciudad{margin-bottom:44px}
-  .lamina{
-    display:grid;grid-template-columns:340px 1fr;gap:38px;align-items:center;
-    background:transparent;border-radius:0;
+@media (min-width:820px){
+  header{padding:80px 0 90px}
+  .margarita{width:290px;height:290px;top:-70px;right:-46px}
+  .ciudad{
+    display:grid;grid-template-columns:300px 1fr;gap:34px;align-items:center;
+    padding:18px;margin-bottom:20px;
   }
-  .ciudad:hover .lamina{transform:none}
-  .lamina img{height:425px;border-radius:2px;transition:transform .4s cubic-bezier(.2,.7,.3,1)}
-  .ciudad:hover .lamina img{transform:scale(1.03)}
-  .lamina{overflow:visible}
-  .lamina > img{overflow:hidden}
-  .velo{display:none}
-  .texto{position:static;padding:0}
-  .nombre{font-size:62px;margin-bottom:14px}
-  .gancho{font-size:17.5px;max-width:34ch;margin-bottom:24px}
-  .ficha div{padding-right:26px;margin-right:26px}
-}
-@media (min-width:800px){
-  .foto{overflow:hidden;border-radius:2px}
+  .foto img{height:376px}
+  .texto{padding:0 8px 0 0}
+  .nombre{font-size:54px}
+  .gancho{font-size:17px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 
-<header class="tapia manana">
+<header>
   <div class="marco">
-    <span class="hora">09:14 · THE LIGHT COMES IN SIDEWAYS</span>
-    <h1>A day in the south is <i>mostly</i> a matter of timing.</h1>
+    <svg class="margarita" viewBox="0 0 100 100" aria-hidden="true">
+      <g transform="translate(50,50)">
+        <g fill="#FFFFFF" stroke="#0E5C36" stroke-width="1.6">
+          <ellipse rx="9.5" ry="26" transform="rotate(0) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(30) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(60) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(90) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(120) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(150) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(180) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(210) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(240) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(270) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(300) translate(0,-22)"/>
+          <ellipse rx="9.5" ry="26" transform="rotate(330) translate(0,-22)"/>
+        </g>
+        <circle r="13" fill="#FFC93C" stroke="#0E5C36" stroke-width="1.6"/>
+      </g>
+    </svg>
+    <p class="hora">09:14 · THE SHADE IS STILL LONG</p>
+    <h1>A day in the south is <em>mostly</em> a matter of timing.</h1>
     <p class="lede">Free one-day guides to Andalusian cities — what to see, and more importantly <i>when</i>. The version you'd get from a friend, not a guidebook.</p>
   </div>
 </header>
 
-<section class="tapia mediodia guias">
+<section class="guias">
   <div class="marco">
     <p class="rotulo">Ready to download</p>
 
     <a class="ciudad" href="cadiz-guide.pdf">
-      <div class="lamina">
-        <div class="foto"><img src="img/cadiz.jpg" alt="Lucy on the seafront in Cádiz, the cathedral and the old town behind her." width="1080" height="1350" loading="lazy"></div>
-        <div class="velo"></div>
-        <div class="texto">
-          <h2 class="nombre">Cádiz</h2>
-          <p class="gancho">Older than Rome, surrounded by the Atlantic on three sides, and somehow still nobody's first stop.</p>
-          <dl class="ficha">
-            <div><dt>Founded</dt><dd>c. 1100 BC</dd></div>
-            <div><dt>August high</dt><dd>30°C</dd></div>
-            <div><dt>On foot</dt><dd>All of it</dd></div>
-          </dl>
-          <span class="bajar">Get the PDF <span aria-hidden="true">↓</span></span>
-        </div>
+      <div class="foto"><img src="img/cadiz.jpg" alt="Lucy on the seafront in Cádiz, the cathedral and the old town behind her." width="1080" height="1350" loading="lazy"></div>
+      <div class="texto">
+        <h2 class="nombre">Cádiz</h2>
+        <p class="gancho">Older than Rome, surrounded by the Atlantic on three sides, and somehow still nobody's first stop.</p>
+        <dl class="ficha">
+          <div><dt>Founded</dt><dd>c. 1100 BC</dd></div>
+          <div><dt>August high</dt><dd>30°C</dd></div>
+          <div><dt>On foot</dt><dd>All of it</dd></div>
+        </dl>
+        <span class="bajar">Get the PDF <span aria-hidden="true">↓</span></span>
       </div>
     </a>
 
     <a class="ciudad" href="malaga-guide.pdf">
-      <div class="lamina">
-        <div class="foto"><img src="img/malaga.jpg" alt="Calle Larios in Málaga, marble paving and awnings overhead." width="1080" height="1350" loading="lazy"></div>
-        <div class="velo"></div>
-        <div class="texto">
-          <h2 class="nombre">Málaga</h2>
-          <p class="gancho">Everyone lands here. Almost nobody stays — which is how you drive straight past a Moorish fortress sitting on a Roman theatre.</p>
-          <dl class="ficha">
-            <div><dt>Founded</dt><dd>c. 770 BC</dd></div>
-            <div><dt>August high</dt><dd>32°C</dd></div>
-            <div><dt>Sunset</dt><dd>21:20</dd></div>
-          </dl>
-          <span class="bajar">Get the PDF <span aria-hidden="true">↓</span></span>
-        </div>
+      <div class="foto"><img src="img/malaga.jpg" alt="Calle Larios in Málaga, marble paving and awnings overhead." width="1080" height="1350" loading="lazy"></div>
+      <div class="texto">
+        <h2 class="nombre">Málaga</h2>
+        <p class="gancho">Everyone lands here. Almost nobody stays — which is how you drive straight past a Moorish fortress sitting on a Roman theatre.</p>
+        <dl class="ficha">
+          <div><dt>Founded</dt><dd>c. 770 BC</dd></div>
+          <div><dt>August high</dt><dd>32°C</dd></div>
+          <div><dt>Sunset</dt><dd>21:20</dd></div>
+        </dl>
+        <span class="bajar">Get the PDF <span aria-hidden="true">↓</span></span>
       </div>
     </a>
 
   </div>
 </section>
 
-<section class="tapia tarde mapa">
+<section class="mapa">
   <div class="marco">
-    <span class="hora">17:40 · THE LIGHT COMES BACK</span>
+    <p class="hora">17:40 · THE SHADE COMES BACK</p>
     <p class="rotulo">Eight provinces. Two done.</p>
     <div class="lienzo">
-<svg class="andalucia" viewBox="0 0 1000 582" role="img" aria-label="Map of Andalucía: guides available for Cádiz and Málaga.">
+<svg class="andalucia" viewBox="0 0 1000 582" role="img" aria-label="Map of Andalucía — guides available for Cádiz and Málaga.">
 <path class="prov" d="M101.1 111.4 L114.4 117.2 L123.5 116.9 L120.0 129.4 L127.7 131.1 L129.8 135.3 L152.9 134.3 L159.9 143.8 L159.4 150.5 L165.8 149.0 L177.6 153.4 L183.0 142.3 L196.1 144.6 L199.5 154.4 L217.8 163.8 L224.2 163.2 L229.6 174.3 L233.8 172.0 L237.2 175.4 L230.5 184.5 L234.3 185.9 L237.8 194.2 L235.7 200.4 L224.1 196.6 L220.7 210.6 L215.6 210.0 L215.6 205.6 L205.6 205.3 L182.1 215.1 L177.8 213.7 L173.4 225.9 L167.5 229.6 L168.7 237.1 L183.2 235.5 L191.4 238.1 L191.8 250.3 L196.2 254.2 L198.0 262.6 L206.5 276.1 L205.4 279.2 L198.0 280.6 L197.0 288.3 L199.7 290.5 L193.2 296.5 L201.9 304.7 L197.4 317.7 L199.8 322.0 L198.9 330.0 L201.4 332.3 L197.4 339.0 L200.3 342.3 L192.9 352.3 L198.4 371.0 L194.1 382.5 L202.3 390.2 L198.5 399.0 L199.8 411.5 L191.0 409.7 L182.2 388.3 L169.9 373.4 L102.9 330.9 L103.0 333.7 L114.3 341.4 L117.2 345.5 L101.6 333.4 L78.6 323.6 L42.8 325.5 L24.9 332.0 L19.6 329.4 L15.1 315.3 L17.1 310.0 L13.7 302.2 L14.0 285.2 L10.2 281.1 L13.1 279.0 L10.0 264.6 L1.9 256.6 L0.0 250.4 L2.7 249.5 L3.2 239.5 L5.7 239.7 L13.4 226.6 L11.9 223.8 L17.3 206.5 L33.7 194.4 L40.6 183.0 L46.6 164.8 L44.1 159.4 L54.4 154.3 L66.2 155.1 L68.2 153.9 L67.0 148.7 L72.0 145.7 L78.7 151.3 L88.3 150.2 L90.9 132.9 L96.9 122.4 L94.0 119.6 L101.1 111.4 Z"/>
 <path class="prov" d="M305.1 113.2 L311.3 116.2 L312.0 121.3 L308.4 118.9 L310.1 123.1 L302.8 126.7 L303.4 136.6 L310.4 137.2 L320.8 125.5 L328.9 126.9 L344.1 146.1 L344.4 156.0 L357.6 167.1 L357.8 182.9 L370.5 190.7 L368.7 198.9 L375.5 203.3 L376.0 219.1 L372.6 220.9 L369.6 218.0 L364.3 223.9 L362.1 219.6 L357.8 224.6 L361.3 228.5 L357.9 230.8 L367.0 239.3 L367.4 243.7 L398.1 223.3 L402.7 227.4 L409.8 227.1 L406.1 219.4 L409.7 219.0 L411.5 225.4 L416.3 227.8 L412.6 223.4 L415.8 217.5 L420.1 215.2 L428.2 217.7 L436.0 229.3 L432.5 240.4 L439.7 236.8 L439.7 252.0 L436.8 257.1 L444.1 261.8 L442.5 265.2 L444.3 264.1 L444.4 268.8 L449.3 272.4 L447.7 275.0 L455.2 275.5 L453.6 280.9 L459.6 288.0 L458.3 292.1 L465.1 298.4 L474.1 297.0 L475.9 292.0 L481.5 298.0 L483.9 297.1 L484.4 300.3 L481.7 301.2 L485.7 305.7 L483.2 304.1 L482.2 306.6 L485.5 308.0 L487.0 313.9 L473.9 314.4 L473.0 316.3 L476.0 317.3 L474.4 323.5 L477.6 326.4 L463.3 335.7 L457.7 325.7 L452.9 326.2 L449.3 334.8 L445.5 335.2 L444.2 329.7 L438.4 331.0 L437.9 334.9 L444.5 338.9 L443.7 344.1 L419.1 362.0 L407.3 362.7 L400.5 372.5 L389.8 381.0 L377.2 365.6 L376.9 360.6 L361.5 374.3 L358.1 381.2 L353.6 382.4 L350.0 373.8 L356.8 365.7 L354.5 357.4 L341.4 361.4 L348.4 372.0 L335.5 383.5 L337.5 391.3 L329.1 386.7 L328.5 379.9 L323.2 381.3 L314.8 373.7 L307.0 385.6 L284.6 386.7 L279.4 391.0 L276.9 402.3 L240.7 399.0 L231.9 393.0 L215.4 391.2 L211.2 387.6 L202.3 390.2 L194.1 382.5 L198.4 371.0 L192.9 352.7 L200.3 342.3 L197.4 339.0 L201.4 332.3 L198.9 330.0 L199.8 322.0 L197.4 317.7 L201.9 304.7 L193.2 296.5 L199.7 290.5 L197.0 288.3 L198.0 280.6 L205.4 279.2 L206.5 276.1 L198.0 262.6 L196.2 254.2 L191.8 250.3 L191.4 238.1 L183.2 235.5 L168.7 237.1 L167.5 229.6 L173.4 225.9 L177.8 213.7 L182.1 215.1 L205.6 205.3 L215.6 205.6 L215.6 210.0 L220.7 210.6 L224.1 196.6 L235.7 200.4 L237.8 194.2 L234.3 185.9 L230.5 184.5 L237.2 175.5 L233.8 172.0 L228.7 173.2 L227.2 170.2 L229.9 164.5 L249.7 155.7 L266.3 156.0 L269.6 145.0 L273.9 141.6 L270.9 132.6 L278.7 126.8 L279.7 121.2 L305.1 113.2 Z"/>
 <path class="prov viva" d="M354.9 357.8 L356.8 365.7 L350.0 373.8 L353.6 382.4 L358.1 381.2 L361.5 374.3 L376.9 360.6 L377.2 365.6 L388.3 381.1 L404.0 367.7 L408.6 370.9 L411.9 375.3 L409.4 377.2 L413.4 388.8 L410.3 390.4 L405.5 402.9 L399.2 406.2 L390.5 402.1 L382.3 393.3 L377.0 396.4 L370.3 407.1 L373.9 414.1 L378.8 416.6 L373.0 427.5 L373.1 438.3 L363.5 447.2 L350.8 449.8 L349.9 456.4 L339.3 468.7 L324.5 465.9 L324.9 472.7 L339.2 475.8 L344.6 467.5 L355.3 468.2 L369.2 492.7 L373.8 512.7 L381.0 510.1 L385.3 515.6 L374.3 533.1 L370.7 549.3 L366.2 549.0 L368.4 548.7 L361.7 543.4 L353.4 547.5 L352.2 552.4 L352.9 554.6 L354.2 552.0 L353.4 555.6 L355.2 552.0 L353.0 556.5 L355.0 559.5 L352.9 562.9 L355.2 566.9 L324.4 582.0 L317.4 570.7 L311.2 567.7 L305.3 569.3 L296.4 563.3 L292.8 565.4 L272.9 542.6 L252.6 543.4 L241.0 521.4 L232.8 516.6 L227.5 503.4 L221.3 498.3 L209.4 470.3 L205.9 469.2 L211.0 466.1 L208.8 468.3 L211.4 466.6 L212.8 468.5 L210.6 469.5 L214.9 473.6 L214.7 481.1 L219.4 483.3 L229.0 470.7 L224.4 469.2 L223.2 473.3 L216.7 473.4 L214.7 469.1 L219.5 470.0 L218.9 457.2 L216.1 459.9 L218.0 457.3 L213.3 458.3 L207.5 450.2 L204.1 451.4 L205.6 450.2 L202.4 448.8 L203.1 451.8 L201.2 448.6 L198.4 450.9 L192.5 447.8 L183.3 424.6 L200.3 412.5 L198.5 399.5 L202.3 390.2 L211.2 387.6 L215.4 391.2 L231.9 393.0 L240.7 399.0 L276.9 402.3 L279.4 391.0 L284.6 386.7 L307.0 385.6 L314.8 373.7 L323.2 381.3 L328.5 379.9 L329.1 386.7 L337.5 391.3 L335.5 383.5 L348.4 372.0 L341.4 361.4 L354.9 357.8 Z"/>
@@ -291,38 +272,108 @@ a.pin:focus-visible{outline:2px solid var(--almagre);outline-offset:4px}
 <path class="prov" d="M843.9 137.4 L865.4 147.9 L879.3 149.5 L886.6 154.6 L895.3 169.1 L902.0 172.9 L887.2 181.5 L888.1 191.0 L886.0 196.0 L890.3 202.8 L882.4 220.4 L884.6 234.0 L876.2 235.9 L870.8 233.5 L874.8 242.3 L873.7 249.6 L876.9 251.8 L876.4 257.0 L859.8 259.8 L859.6 263.8 L850.0 266.2 L828.3 285.8 L829.1 295.3 L826.1 295.8 L824.3 307.6 L825.2 323.3 L812.8 317.9 L808.4 320.2 L805.0 312.5 L793.8 308.9 L788.7 319.1 L787.7 328.6 L779.6 335.1 L776.2 347.9 L767.5 348.3 L762.5 344.4 L766.6 363.6 L771.6 373.2 L769.1 377.5 L762.6 379.8 L762.2 384.7 L755.3 385.8 L762.6 401.8 L743.7 413.9 L745.7 421.8 L725.1 421.0 L710.3 424.3 L696.3 433.9 L685.6 433.2 L678.3 427.5 L673.6 429.4 L665.3 423.1 L655.9 422.7 L642.9 428.4 L640.5 424.6 L635.6 424.5 L637.2 410.8 L627.2 399.5 L620.3 400.4 L609.8 393.6 L590.1 389.3 L580.9 378.7 L569.6 377.7 L558.6 364.9 L551.6 365.4 L549.1 343.0 L542.2 329.2 L554.5 319.5 L553.2 313.0 L557.7 305.1 L557.7 296.9 L563.2 293.2 L571.0 295.5 L583.2 282.4 L597.7 282.7 L606.2 287.8 L624.6 286.2 L634.2 263.8 L635.8 266.8 L661.1 255.7 L676.5 244.6 L676.5 241.0 L681.6 236.8 L699.8 248.1 L717.3 243.0 L723.0 232.1 L730.9 231.0 L738.3 231.3 L752.6 241.4 L758.9 236.5 L771.2 239.9 L771.3 233.2 L787.2 223.1 L784.2 221.4 L783.9 208.2 L787.8 206.3 L789.1 199.6 L804.1 172.6 L818.0 161.1 L823.6 163.3 L834.4 155.5 L836.1 143.7 L834.3 141.9 L843.9 137.4 Z"/>
 <path class="prov" d="M906.4 176.7 L908.0 178.8 L916.3 176.3 L920.2 181.3 L933.5 183.2 L938.1 180.6 L941.6 183.1 L938.0 189.2 L935.7 203.1 L937.9 213.1 L935.1 219.0 L935.2 225.0 L941.2 236.5 L963.5 271.5 L969.7 276.0 L969.2 272.2 L981.9 274.1 L1000.0 288.4 L992.0 293.2 L986.7 303.6 L975.4 317.4 L971.6 319.5 L962.8 354.0 L954.1 371.2 L953.6 381.9 L947.3 382.1 L942.8 390.2 L938.6 391.3 L937.3 402.7 L927.0 409.2 L927.0 416.0 L919.2 419.2 L916.1 425.8 L906.0 428.5 L887.8 407.0 L875.9 402.4 L864.8 409.0 L856.6 403.4 L858.5 405.7 L855.4 403.7 L841.9 407.8 L832.1 426.9 L818.4 436.2 L806.3 436.6 L798.8 431.3 L793.1 433.6 L780.2 421.6 L771.3 424.4 L745.7 421.8 L743.7 413.9 L762.6 401.8 L755.3 385.8 L762.2 384.7 L762.6 379.8 L769.1 377.5 L771.6 373.2 L766.6 363.6 L762.5 344.4 L767.5 348.3 L776.2 347.9 L779.6 335.1 L787.7 328.6 L788.7 319.1 L793.8 308.9 L805.0 312.5 L808.4 320.2 L812.8 317.9 L825.2 323.3 L824.3 307.6 L826.1 295.8 L829.1 295.3 L828.3 285.8 L850.0 266.2 L859.6 263.8 L859.8 259.8 L876.4 257.0 L876.9 251.8 L873.7 249.6 L874.8 242.3 L870.8 233.5 L876.2 235.9 L884.8 233.3 L882.4 220.4 L890.3 202.8 L886.0 196.0 L888.1 191.0 L887.2 181.5 L902.0 172.9 L906.4 176.7 Z"/>
 <g class="pin">
-<path class="icono" d="M-9 7 L9 7 L6 11 L-6 11 Z M0 7 L0 -11 M0 -9 L7 -4 L0 -1 M0 -9 L-6 -4.6 L0 -2.2" transform="translate(134.4 227.1) scale(1.35)"/>
-<text class="sitio" x="134.4" y="257.1">HUELVA</text>
+<g class="icono" transform="translate(136.4 223.1) scale(1.25)">
+<path d="M-11 8 L11 8 L7.6 13 L-7.6 13 Z"/>
+<path d="M-11 8 L11 8"/>
+<path d="M0 8 L0 -14"/>
+<path d="M0 -12 Q7.4 -8 8.6 -3 L0 -3 Z"/>
+<path d="M0 -1 Q7 2.4 8 6 L0 6 Z"/>
+<path d="M0 -10 Q-6.4 -6.6 -7.4 -2.4 L0 -2.4"/>
+<path d="M0 -14 L2.6 -13.2"/>
+</g>
+<text class="sitio" x="136.4" y="255.1">HUELVA</text>
 </g>
 <g class="pin">
-<path class="icono" d="M-5 10 L-5 -4 L5 -4 L5 10 M-5 -4 L-3 -8 L3 -8 L5 -4 M0 -8 L0 -12 M-2.6 1 L-2.6 5 M2.6 1 L2.6 5" transform="translate(323.1 257.0) scale(1.35)"/>
-<text class="sitio" x="323.1" y="287.0">SEVILLA</text>
+<g class="icono" transform="translate(321.1 253.0) scale(1.30)">
+<path d="M-6 15 L-6 0 L6 0 L6 15"/>
+<path d="M-6 15 L6 15"/>
+<path d="M-3.4 3 L-3.4 12 M0 3 L0 12 M3.4 3 L3.4 12"/>
+<path d="M-6 0 L-5 -3 L5 -3 L6 0"/>
+<path d="M-5 -3 L-5 -8 L5 -8 L5 -3"/>
+<path d="M-2.6 -3 L-2.6 -6.4 A2.6 2.6 0 0 1 2.6 -6.4 L2.6 -3"/>
+<path d="M-5 -8 L-3.2 -11 L3.2 -11 L5 -8"/>
+<path d="M0 -11 L0 -14"/>
+<path d="M0 -16 A2 2 0 1 1 0 -15.9 Z"/>
+</g>
+<text class="sitio" x="321.1" y="285.0">SEVILLA</text>
 </g>
 <a class="pin viva" href="cadiz-guide.pdf" aria-label="Download the Cádiz guide">
-<path class="icono" d="M-9 7 L-9 -2 L-6 -5 L-3 -2 L-3 7 M9 7 L9 -2 L6 -5 L3 -5 L3 7 M-3 7 L-3 -1 A3 3.4 0 0 1 3 -1 L3 7 M0 -4.4 L0 -7 M-11 10 Q-5.5 7.6 0 10 Q5.5 12.4 11 10" transform="translate(315.6 450.2) scale(1.35)"/>
-<text class="sitio" x="315.6" y="480.2">CÁDIZ</text>
-<text class="pdf" x="315.6" y="496.2">GUIDE ↓</text>
+<g class="icono" transform="translate(295.6 464.2) scale(1.25)">
+<path d="M-11.5 11 L-11.5 -1 L-4.5 -1 L-4.5 11"/>
+<path d="M-11.5 -1 L-8 -5.4 L-4.5 -1"/>
+<path d="M11.5 11 L11.5 -1 L4.5 -1 L4.5 11"/>
+<path d="M11.5 -1 L8 -5.4 L4.5 -1"/>
+<path d="M-4.5 11 L-4.5 1 A4.5 5.6 0 0 1 4.5 1 L4.5 11"/>
+<path d="M0 -4.6 L0 -8 M-1.5 -6.4 L1.5 -6.4"/>
+<path d="M-9.4 4 L-9.4 7.6 M-6.6 4 L-6.6 7.6 M6.6 4 L6.6 7.6 M9.4 4 L9.4 7.6"/>
+<path d="M-15 14 Q-10 11.4 -5 14 Q0 16.6 5 14 Q10 11.4 15 14"/>
+</g>
+<text class="sitio" x="295.6" y="496.2">CÁDIZ</text>
+<text class="pdf" x="295.6" y="513.2">GUIDE &#8595;</text>
 </a>
 <g class="pin">
-<path class="icono" d="M-10 10 L-10 0 A5 5.6 0 0 1 0 0 L0 10 M0 10 L0 0 A5 5.6 0 0 1 10 0 L10 10 M-12 10 L12 10" transform="translate(467.4 174.7) scale(1.35)"/>
-<text class="sitio" x="467.4" y="204.7">CÓRDOBA</text>
+<g class="icono" transform="translate(467.4 170.7) scale(1.15)">
+<path d="M-13 14 L13 14"/>
+<path d="M-11 14 L-11 3 M0 14 L0 3 M11 14 L11 3"/>
+<path d="M-11 3 A5.5 6.2 0 0 1 0 3"/>
+<path d="M0 3 A5.5 6.2 0 0 1 11 3"/>
+<path d="M-11 3 L-11 -3 M0 3 L0 -3 M11 3 L11 -3"/>
+<path d="M-11 -3 A5.5 4.4 0 0 1 0 -3"/>
+<path d="M0 -3 A5.5 4.4 0 0 1 11 -3"/>
+<path d="M-13 -7.6 L13 -7.6"/>
+</g>
+<text class="sitio" x="467.4" y="202.7">CÓRDOBA</text>
 </g>
 <a class="pin viva" href="malaga-guide.pdf" aria-label="Download the Málaga guide">
-<path class="icono" d="M-8 10 L-8 -3 L-3 -3 L-3 10 M-8 -3 L-5.5 -8 L-3 -3 M3 10 L3 1 L8 1 L8 10 M-3 10 L3 10 M-5.5 -8 L-5.5 -11" transform="translate(474.9 388.7) scale(1.35)"/>
-<text class="sitio" x="474.9" y="418.7">MÁLAGA</text>
-<text class="pdf" x="474.9" y="434.7">GUIDE ↓</text>
+<g class="icono" transform="translate(484.9 386.7) scale(1.30)">
+<path d="M-10 15 L10 15"/>
+<path d="M-10 15 L-10 -2 L-3 -2 L-3 15"/>
+<path d="M-10 -2 L-6.5 -9 L-3 -2"/>
+<path d="M-6.5 -9 L-6.5 -12 M-8 -10.6 L-5 -10.6"/>
+<path d="M3 15 L3 4 L10 4 L10 15"/>
+<path d="M3 4 L10 4"/>
+<path d="M-3 15 L3 15 M-3 6 L3 6"/>
+<path d="M-8 2 L-8 -0.4 M-5 2 L-5 -0.4"/>
+<path d="M4.8 8 L4.8 11 M8.2 8 L8.2 11"/>
+</g>
+<text class="sitio" x="484.9" y="418.7">MÁLAGA</text>
+<text class="pdf" x="484.9" y="435.7">GUIDE &#8595;</text>
 </a>
 <g class="pin">
-<path class="icono" d="M0 11 L0 -1 M0 2 L-5 -2 M0 4 L5 0 M-1.5 -1 A6.5 5.5 0 1 1 6 -3.5 A5.5 5 0 1 1 -1.5 -1 Z" transform="translate(682.8 137.2) scale(1.35)"/>
-<text class="sitio" x="682.8" y="167.2">JAÉN</text>
+<g class="icono" transform="translate(682.8 133.2) scale(1.25)">
+<path d="M-1.4 15 Q-0.6 9 -1.8 4 M1.4 15 Q0.6 9 1.8 4"/>
+<path d="M-4.6 15 L4.6 15"/>
+<path d="M-1.8 6.6 L-6 3.6 M1.8 8 L5.4 5.4"/>
+<path d="M-2.4 4 Q-9.6 3.4 -8.6 -2.4 Q-8 -7.4 -2.6 -7 Q-0.6 -11 3.4 -8.6 Q9.4 -8 8.6 -2 Q8.2 3.6 2.4 4 Z"/>
+<path d="M-5.2 0.4 A1.25 1.25 0 1 1 -5.1 0.4 Z"/>
+<path d="M1.6 -5.6 A1.25 1.25 0 1 1 1.7 -5.6 Z"/>
+<path d="M5.4 -0.8 A1.25 1.25 0 1 1 5.5 -0.8 Z"/>
+</g>
+<text class="sitio" x="682.8" y="165.2">JAÉN</text>
 </g>
 <g class="pin">
-<path class="icono" d="M-10 10 L-10 2 L-2 2 L-2 -6 L6 -6 L6 2 L10 2 L10 10 Z M-2 -6 L-2 -9 M0.5 -6 L0.5 -9 M3.5 -6 L3.5 -9 M6 -6 L6 -9" transform="translate(746.6 283.3) scale(1.35)"/>
-<text class="sitio" x="746.6" y="313.3">GRANADA</text>
+<g class="icono" transform="translate(744.6 279.3) scale(1.10)">
+<path d="M-14 15 L14 15"/>
+<path d="M-14 15 L-14 4 L-5 4 L-5 -6 L3 -6 L3 4 L10 4 L10 15"/>
+<path d="M-5 -6 L-5 -9 M-2.4 -6 L-2.4 -9 M0.4 -6 L0.4 -9 M3 -6 L3 -9"/>
+<path d="M-14 4 L-14 1 M-11 4 L-11 1 M-8 4 L-8 1"/>
+<path d="M6 4 L6 1 M10 4 L10 1"/>
+<path d="M-2 0 L-2 4 M-2 0 A1.6 1.6 0 0 1 1 0"/>
+<path d="M-16 -2 L-11 -8 L-7 -4 L-2 -12 L4 -5 L9 -9 L16 -2"/>
+</g>
+<text class="sitio" x="744.6" y="311.3">GRANADA</text>
 </g>
 <g class="pin">
-<path class="icono" d="M-11 11 L-11 3 L-4 3 L-4 -4 L4 -4 L4 3 L11 3 L11 11 Z M-11 3 L-11 0 M-7.5 3 L-7.5 0 M-4 -4 L-4 -7 M0 -4 L0 -7 M4 -4 L4 -7 M7.5 3 L7.5 0 M11 3 L11 0" transform="translate(882.2 307.5) scale(1.35)"/>
-<text class="sitio" x="882.2" y="337.5">ALMERÍA</text>
+<g class="icono" transform="translate(880.2 303.5) scale(1.10)">
+<path d="M-15 15 L15 15"/>
+<path d="M-15 15 L-15 6 L-7 6 L-7 0 L2 0 L2 6 L9 6 L9 15"/>
+<path d="M-15 6 L-15 3 M-12 6 L-12 3 M-9 6 L-9 3"/>
+<path d="M-7 0 L-7 -3 M-4.4 0 L-4.4 -3 M-1.6 0 L-1.6 -3 M2 0 L2 -3"/>
+<path d="M4.6 6 L4.6 3 M9 6 L9 3"/>
+<path d="M-3.4 6 L-3.4 1.6 A1.8 1.8 0 0 1 -0.2 1.6 L-0.2 6"/>
+<path d="M9 15 L15 15 L15 9 L12 9"/>
+</g>
+<text class="sitio" x="880.2" y="335.5">ALMERÍA</text>
 </g>
 </svg>
     </div>
@@ -330,17 +381,17 @@ a.pin:focus-visible{outline:2px solid var(--almagre);outline-offset:4px}
   </div>
 </section>
 
-<footer class="tapia noche cierre">
+<footer class="cierre">
   <div class="marco">
-    <span class="hora">21:20 · THE STREET WAKES UP</span>
+    <p class="hora">21:20 · THE STREET WAKES UP</p>
     <div class="tarjeta">
       <img class="retrato" src="img/lucy.jpg" alt="Lucy" width="520" height="520" loading="lazy">
       <div class="dicho">
-        <p>The Spain we're proud of — not the one on the postcard.</p>
+        <p>The Spain we're <em>proud of</em> — not the one on the postcard.</p>
         <a class="seguir" href="https://www.instagram.com/itslucyinthesouth/" target="_blank" rel="noopener">Follow for the next one →</a>
       </div>
     </div>
-    <p class="firma">@itslucyinthesouth · Andalucía</p>
+    <p class="firma"><span>@itslucyinthesouth · Andalucía</span><span class="caveat">See you in the south</span></p>
   </div>
 </footer>
 
